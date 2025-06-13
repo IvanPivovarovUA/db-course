@@ -29,7 +29,7 @@ public class Domain {
 
                     WeatherEntity weatherEntity = new WeatherEntity();
                     weatherEntity.country = parts[0];
-                    weatherEntity.last_updated = parts[6];
+                    weatherEntity.lastUpdated = parts[6];
                     weatherEntity.air_quality_Carbon_Monoxide = Double.parseDouble(parts[27]);
                     weatherEntity.air_quality_Ozone = Double.parseDouble(parts[28]);
                     weatherEntity.air_quality_Nitrogen_dioxide = Double.parseDouble(parts[29]);
@@ -50,8 +50,9 @@ public class Domain {
         }
     }
 
-    public String getWeatherForecast(ArrayList<String> address) {
-        return "hello from getWeatherForecast";
+    public String getWeatherForecast(ArrayList<String> address)   {
+        return weatherRepository.findByCountryAndLastUpdated(address.get(0),address.get(1)).toString();
+//        return "hello from getWeatherForecast";
     }
 
 }

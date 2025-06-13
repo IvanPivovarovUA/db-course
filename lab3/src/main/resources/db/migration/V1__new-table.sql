@@ -9,5 +9,13 @@ CREATE TABLE weather (
     air_quality_PM2_5 FLOAT,
     air_quality_PM10 FLOAT,
     air_quality_us_epa_index FLOAT,
-    air_quality_gb_defra_index FLOAT
+    air_quality_gb_defra_index FLOAT,
+
+    go_outside BOOLEAN GENERATED ALWAYS AS (
+        CASE
+            WHEN air_quality_PM10 > 50 OR air_quality_Ozone > 100 THEN FALSE
+            ELSE TRUE
+        END
+    ) STORED
 );
+
